@@ -20,6 +20,8 @@ public class CastellController : MonoBehaviour
 
     private bool playable=true;
 
+    public GameObject followed_item=null;
+
     GameObject nextPis(Quaternion last_rotation, Vector3 last_position)
     {
         GameObject next_pis = new GameObject("pis "+pis_counter);
@@ -57,13 +59,14 @@ public class CastellController : MonoBehaviour
             last_degree+=current_pis.transform.rotation.z;
             current_pis = this.nextPis(current_pis.transform.rotation, current_pis.transform.position);
             if(
-                ((last_degree+current_pis.transform.rotation.z)*180>10f)||
-                ((last_degree+current_pis.transform.rotation.z)*180<-10f)||
+                ((last_degree)*180>15f)||
+                ((last_degree)*180<-15f)||
                 (current_pis.transform.position.x>5)||
-                (current_pis.transform.position.z<-5))
+                (current_pis.transform.position.x<-5))
             {
+                Debug.Log("degree: "+((last_degree)*180));
+                Debug.Log("position: "+current_pis.transform.position.x);
                 FallMode();
-            }
         }
         else
         {
@@ -71,7 +74,7 @@ public class CastellController : MonoBehaviour
 
             float rotacio = current_pis.transform.rotation.z*180;
 
-            int random_max_degree = rnd.Next(0,((int)last_degree)+10);
+            int random_max_degree = rnd.Next(0, 2*((int)last_degree)+10);
 
             if((rotacio>random_max_degree)||(rotacio<-random_max_degree))
             {
