@@ -67,6 +67,7 @@ public class CastellController : MonoBehaviour
                 Debug.Log("degree: "+((last_degree)*180));
                 Debug.Log("position: "+current_pis.transform.position.x);
                 FallMode();
+            }
         }
         else
         {
