@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class CastellController : MonoBehaviour
 {
@@ -22,6 +24,8 @@ public class CastellController : MonoBehaviour
 
     public GameObject followed_item=null;
 
+    public int random_max_degree=10;
+
     GameObject nextPis(Quaternion last_rotation, Vector3 last_position)
     {
         GameObject next_pis = new GameObject("pis "+pis_counter);
@@ -34,6 +38,7 @@ public class CastellController : MonoBehaviour
         (next_pis.GetComponent(typeof(SpriteRenderer)) as SpriteRenderer).sprite=pissos_sprites[0] as Sprite;
 
         next_pis.transform.rotation=last_rotation;
+        velocitat_gir*=1.2f;
 
         return next_pis;
     }
@@ -75,11 +80,10 @@ public class CastellController : MonoBehaviour
 
             float rotacio = current_pis.transform.rotation.z*180;
 
-            int random_max_degree = rnd.Next(0, 2*((int)last_degree)+10);
-
             if((rotacio>random_max_degree)||(rotacio<-random_max_degree))
             {
                 sentit*=-1;
+                random_max_degree = 10+rnd.Next(0, ((int)last_degree+10));
             }
         }
     }
@@ -87,9 +91,17 @@ public class CastellController : MonoBehaviour
     void FallMode()
     {
         playable=false;
+        StartCoroutine(ResetSceneOn(3f));
         for (int i = 0; i < pinya.transform.childCount; i++)
         {
             pinya.transform.GetChild(i).gameObject.AddComponent(typeof(Rigidbody2D));
         }
     }
+
+
+	IEnumerator ResetSceneOn(float delay)
+	{
+		yield return new WaitForSeconds(delay);
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+}
 }
