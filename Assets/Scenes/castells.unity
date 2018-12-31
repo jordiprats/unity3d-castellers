@@ -317,3 +317,5 @@ MonoBehaviour:
   last_degree: 0
   sentit: 1
   velocitat_gir: 30
+  followed_item: {fileID: 0}
+  random_max_degree: 10
