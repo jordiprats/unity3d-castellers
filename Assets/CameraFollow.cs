@@ -20,10 +20,12 @@ public class CameraFollow : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void FixedUpdate()
     {
         target = GameObject.Find(target_name);
 
-        transform.position = Vector3.Lerp(transform.position, target.transform.position + offset, speed*Time.deltaTime);;
+        Vector3 original_position=transform.position;
+        Vector3 desired_position = Vector3.Lerp(transform.position, target.transform.position + offset, speed*Time.deltaTime);
+        transform.position = new Vector3(original_position.x, Mathf.Clamp(desired_position.y, 0, float.MaxValue), original_position.z);
     }
 }

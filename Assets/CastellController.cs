@@ -26,6 +26,11 @@ public class CastellController : MonoBehaviour
 
     public int random_max_degree=10;
 
+    public bool isPlayable()
+    {
+        return this.playable;
+    }
+
     GameObject nextPis(Quaternion last_rotation, Vector3 last_position)
     {
         GameObject next_pis = new GameObject("pis "+pis_counter);
