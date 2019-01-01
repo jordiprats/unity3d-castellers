@@ -40,6 +40,8 @@ public class CastellController : MonoBehaviour
         next_pis.transform.rotation=last_rotation;
         velocitat_gir*=1.2f;
 
+        ((camera.GetComponent(typeof(CameraFollow))) as CameraFollow).setTargetName(next_pis.name);
+
         return next_pis;
     }
 
