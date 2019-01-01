@@ -61,17 +61,20 @@ public class CastellController : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
-            last_degree+=current_pis.transform.rotation.z;
-            current_pis = this.nextPis(current_pis.transform.rotation, current_pis.transform.position);
-            if(
-                ((last_degree)*180>15f)||
-                ((last_degree)*180<-15f)||
-                (current_pis.transform.position.x>5)||
-                (current_pis.transform.position.x<-5))
+            if(playable)
             {
-                Debug.Log("degree: "+((last_degree)*180));
-                Debug.Log("position: "+current_pis.transform.position.x);
-                FallMode();
+                last_degree+=current_pis.transform.rotation.z;
+                current_pis = this.nextPis(current_pis.transform.rotation, current_pis.transform.position);
+                if(
+                    ((last_degree)*180>15f)||
+                    ((last_degree)*180<-15f)||
+                    (current_pis.transform.position.x>5)||
+                    (current_pis.transform.position.x<-5))
+                {
+                    Debug.Log("degree: "+((last_degree)*180));
+                    Debug.Log("position: "+current_pis.transform.position.x);
+                    FallMode();
+                }
             }
         }
         else
