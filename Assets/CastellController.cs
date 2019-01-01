@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class CastellController : MonoBehaviour
 {
     private System.Random rnd;
-    private Camera camera;
+    private Camera cam;
 
     private GameObject pinya;
     private GameObject current_pis;
@@ -45,7 +45,7 @@ public class CastellController : MonoBehaviour
         next_pis.transform.rotation=last_rotation;
         velocitat_gir*=1.2f;
 
-        ((camera.GetComponent(typeof(CameraFollow))) as CameraFollow).setTargetName(next_pis.name);
+        ((cam.GetComponent(typeof(CameraFollow))) as CameraFollow).setTargetName(next_pis.name);
 
         return next_pis;
     }
@@ -55,7 +55,7 @@ public class CastellController : MonoBehaviour
     {
         rnd = new System.Random();
 
-        camera = GameObject.Find("camera").GetComponent(typeof(Camera)) as Camera;
+        cam = GameObject.Find("camera").GetComponent(typeof(Camera)) as Camera;
         pinya = GameObject.Find("pinya");
 
         pissos_sprites = Resources.LoadAll(path: "Pissos", systemTypeInstance: typeof(Sprite));
