@@ -37,7 +37,7 @@ public class CastellController : MonoBehaviour
         pis_counter++;
 
         next_pis.transform.SetParent(pinya.transform, false);
-        next_pis.transform.localPosition=new Vector3((last_position.x+((last_rotation.z*360)/100)*-1),pis_counter,0);
+        next_pis.transform.localPosition=new Vector3((last_position.x+((last_rotation.z*360)/100)*-1),pis_counter*1.2f,0);
 
         next_pis.AddComponent(typeof(SpriteRenderer));
         (next_pis.GetComponent(typeof(SpriteRenderer)) as SpriteRenderer).sprite=pissos_sprites[0] as Sprite;
