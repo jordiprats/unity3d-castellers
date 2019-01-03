@@ -7,8 +7,9 @@ public class CameraFollow : MonoBehaviour
     public GameObject target;
     public string target_name="pinya";
     public float speed=5f;
+    public float background_speed=5f;
     public Vector3 offset;
-
+    
     void Start()
     {
         offset = new Vector3(0,0,-10);
