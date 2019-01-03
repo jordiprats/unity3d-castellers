@@ -444,7 +444,7 @@ GameObject:
   - component: {fileID: 1423500185}
   - component: {fileID: 1423500184}
   m_Layer: 0
-  m_Name: blat_2
+  m_Name: placa blat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
