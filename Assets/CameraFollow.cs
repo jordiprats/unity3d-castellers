@@ -5,14 +5,15 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     public GameObject target;
+    public GameObject background;
     public string target_name="pinya";
     public float speed=5f;
-    public float background_speed=5f;
     public Vector3 offset;
-    
+
     void Start()
     {
         offset = new Vector3(0,0,-10);
+        background = GameObject.Find("background");
     }
 
     public void setTargetName(string name)
@@ -28,5 +29,7 @@ public class CameraFollow : MonoBehaviour
         Vector3 original_position=transform.position;
         Vector3 desired_position = Vector3.Lerp(transform.position, target.transform.position + offset, speed*Time.deltaTime);
         transform.position = new Vector3(original_position.x, Mathf.Clamp(desired_position.y, 0, float.MaxValue), original_position.z);
+
+        background.transform.position=new Vector3(0, transform.position.y/2, 90);
     }
 }
