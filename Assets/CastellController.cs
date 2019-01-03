@@ -88,7 +88,8 @@ public class CastellController : MonoBehaviour
         }
         else
         {
-            current_pis.transform.RotateAround(current_pis.transform.position, new Vector3(0,0,1), sentit * velocitat_gir * Time.deltaTime);
+            if(playable)
+                current_pis.transform.RotateAround(current_pis.transform.position, new Vector3(0,0,1), sentit * velocitat_gir * Time.deltaTime);
 
             float rotacio = current_pis.transform.rotation.z*180;
 
