@@ -45,6 +45,8 @@ public class CastellController : MonoBehaviour
         next_pis.transform.rotation=last_rotation;
         velocitat_gir*=1.2f;
 
+        next_pis.transform.Rotate(new Vector3(0, 0 , sentit*0.3f));
+
         ((cam.GetComponent(typeof(CameraFollow))) as CameraFollow).setTargetName(next_pis.name);
 
         return next_pis;
@@ -112,6 +114,7 @@ public class CastellController : MonoBehaviour
     void FallMode()
     {
         playable=false;
+        ((cam.GetComponent(typeof(CameraFollow))) as CameraFollow).setTargetName("pinya");
         StartCoroutine(ResetSceneOn(3f));
         for (int i = 0; i < pinya.transform.childCount; i++)
         {
