@@ -66,7 +66,7 @@ public class CastellController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if((Input.GetMouseButtonDown(0)) || Input.anyKeyDown )
+        if((Input.GetMouseButtonDown(0)) || Input.anyKeyDown)
         {
             if(playable)
             {
@@ -90,10 +90,21 @@ public class CastellController : MonoBehaviour
 
             float rotacio = current_pis.transform.rotation.z*180;
 
-            if((rotacio>random_max_degree)||(rotacio<-random_max_degree))
+            if(sentit>0)
             {
-                sentit*=-1;
-                random_max_degree = 10+rnd.Next(0, ((int)last_degree+10));
+                if(rotacio>random_max_degree)
+                {
+                    sentit*=-1;
+                    random_max_degree = 10+rnd.Next(0, ((int)last_degree+10));
+                }
+            }
+            else
+            {
+                if(rotacio<-random_max_degree)
+                {
+                    sentit*=-1;
+                    random_max_degree = 10+rnd.Next(0, ((int)last_degree+10));
+                }
             }
         }
     }
