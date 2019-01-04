@@ -14,6 +14,7 @@ public class CastellController : MonoBehaviour
     private GameObject current_pis;
     private GameObject puntuacio;
     private Text puntuacio_text;
+    public GameObject win_sprite;
 
     private int pis_counter=0;
     public Object[] pissos_sprites;
@@ -28,6 +29,7 @@ public class CastellController : MonoBehaviour
     public GameObject followed_item=null;
 
     public int random_max_degree=10;
+
 
     public bool isPlayable()
     {
@@ -135,6 +137,13 @@ public class CastellController : MonoBehaviour
 	IEnumerator ResetSceneOn(float delay)
 	{
         puntuacio.SetActive(true);
+        if(pis_counter<=Global.BestCastell)
+            GameObject.Find("win_sprite").SetActive(false);
+        else
+        {
+            Global.BestCastell=pis_counter;
+        }
+            
 		yield return new WaitForSeconds(delay);
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
