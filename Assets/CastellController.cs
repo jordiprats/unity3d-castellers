@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 public class CastellController : MonoBehaviour
@@ -11,6 +12,8 @@ public class CastellController : MonoBehaviour
 
     private GameObject pinya;
     private GameObject current_pis;
+    private GameObject puntuacio;
+    private Text puntuacio_text;
 
     private int pis_counter=0;
     public Object[] pissos_sprites;
@@ -35,6 +38,7 @@ public class CastellController : MonoBehaviour
     {
         GameObject next_pis = new GameObject("pis "+pis_counter);
         pis_counter++;
+        puntuacio_text.text = "2 de "+pis_counter;
 
         next_pis.transform.SetParent(pinya.transform, false);
         next_pis.transform.localPosition=new Vector3((last_position.x+((last_rotation.z*360)/100)*-1),pis_counter*1.2f,0);
@@ -59,6 +63,10 @@ public class CastellController : MonoBehaviour
 
         cam = GameObject.Find("camera").GetComponent(typeof(Camera)) as Camera;
         pinya = GameObject.Find("pinya");
+        puntuacio = GameObject.Find("puntuacio");
+        puntuacio_text = (Text)GameObject.Find("puntuacio_text").GetComponent(typeof(Text));
+
+        puntuacio.SetActive(false);
 
         pissos_sprites = Resources.LoadAll(path: "Pissos", systemTypeInstance: typeof(Sprite));
 
@@ -126,6 +134,7 @@ public class CastellController : MonoBehaviour
 
 	IEnumerator ResetSceneOn(float delay)
 	{
+        puntuacio.SetActive(true);
 		yield return new WaitForSeconds(delay);
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
